@@ -47,14 +47,14 @@ task bigHello {
 
 bigHello.dependsOn hello
 
-//task buildInfo {
-//    doLast {
-//        def cmd = "git rev-parse --short HEAD"
-//        def proc = cmd.execute()
-//        def revision = proc.text.trim()
-//        print revision
-//        file(buildDir.path + "/classes/java/main/revision.txt").text = revision
-//    }
-//}
-//jar.dependsOn 'buildInfo'
+task buildInfo {
+    doLast {
+        def cmd = "git rev-parse --short HEAD"
+        def proc = cmd.execute()
+        def revision = proc.text.trim()
+        print revision
+        file(buildDir.path + "/classes/java/main/revision.txt").text = revision
+    }
+}
+jar.dependsOn 'buildInfo'
  
