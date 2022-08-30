@@ -30,31 +30,31 @@ application {
 }
 
 task hello {
-	group 'Skillfactory'
-	description 'Display hello message.'
-	doLast {
-		println 'Hello '
-	}
+    group 'Skillfactory'
+    description 'Display hello message.'
+    doLast {
+        println 'Hello '
+    }
 }
 
 task bigHello {
-	group 'Skillfactory'
-	description 'Display big hello message.'
-	doLast {
-		println 'from Skillfactory'
-	}
+    group 'Skillfactory'
+    description 'Display big hello message.'
+    doLast {
+        println 'from Skillfactory'
+    }
 }
 
 bigHello.dependsOn hello
 
-task buildInfo {
-doLast {
-	def cmd="git rev-parse --short HEAD"
-	def proc = cmd.execute()
-	def version = proc.text.trim()
-	print revision
-	file(buildDir.path + "/classes/java/main/revision.txt").text = revision
-	}
-}
-jar.dependsOn 'buildInfo'
+//task buildInfo {
+//    doLast {
+//        def cmd = "git rev-parse --short HEAD"
+//        def proc = cmd.execute()
+//        def revision = proc.text.trim()
+//        print revision
+//        file(buildDir.path + "/classes/java/main/revision.txt").text = revision
+//    }
+//}
+//jar.dependsOn 'buildInfo'
  
