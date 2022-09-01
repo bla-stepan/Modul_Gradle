@@ -30,31 +30,35 @@ application {
 }
 
 task hello {
-    group 'Skillfactory'
-    description 'Display hello message.'
-    doLast {
-        println 'Hello '
-    }
+	//добавляем группу для задачи
+	group 'Stepan'
+	//добавляем описание для задачи
+	description 'Display Hello message from STEPAN BLANDINSKIY'
+	//пробуем написать свою задачу
+	doLast {
+		println 'Hello from Stepan'
+	}
 }
-
-task bigHello {
-    group 'Skillfactory'
-    description 'Display big hello message.'
-    doLast {
-        println 'from Skillfactory'
-    }
+//напишем еще одну задачу и свяжем ее предыдущей
+task bigHello{
+	group 'Stepan'
+	description 'Display BIG Hello message from STEPAN'
+	doLast{
+		println 'to Skillfactory'
+	}
 }
-
+//запишем зависимость последней задачи от предыдущей
 bigHello.dependsOn hello
 
-task buildInfo {
-    doLast {
-        def cmd = "git rev-parse --short HEAD"
-        def proc = cmd.execute()
-        def revision = proc.text.trim()
-        print revision
-        file(buildDir.path + "/classes/java/main/revision.txt").text = revision
-    }
+//создадим задачу сопоставления используемого артифакта и отправим инфу в файл version.txt
+task buildInfo{
+	doLast{
+		def cmd="git rev-parse --short HEAD"
+		def proc=cmd.execute()
+		def revision=proc.text.trim()
+		print revision
+		file(buildDir.path+"/classes/java/main/revision.txt").text=revision	
+	}
 }
+
 jar.dependsOn 'buildInfo'
- 
