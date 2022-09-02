@@ -57,7 +57,7 @@ task buildInfo{
 		def proc=cmd.execute()
 		def revision=proc.text.trim()
 		print revision
-		file(buildDir.path+"/classes/java/main/revision.txt").text=revision	
+		file(buildDir.path+"/classes/java/main/revision.txt").text=revision
 	}
 }
 
